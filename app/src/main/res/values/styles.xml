@@ -17,4 +17,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="style_title">
+        <item name="android:textSize">@dimen/default_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

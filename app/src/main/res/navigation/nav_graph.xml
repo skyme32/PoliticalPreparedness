@@ -43,6 +43,12 @@
     <fragment
         android:id="@+id/electionsFragment"
         android:name="com.example.android.politicalpreparedness.election.ElectionsFragment"
-        android:label="@string/fragment_elections"/>
+        android:label="@string/fragment_elections">
+        <action
+            android:id="@+id/action_electionsFragment_to_voterInfoFragment"
+            app:destination="@id/voterInfoFragment"
+            app:enterAnim="@anim/anim_in"
+            app:popEnterAnim="@anim/anim_out" />
+    </fragment>
 
 </navigation>

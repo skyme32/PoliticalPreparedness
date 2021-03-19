@@ -11,7 +11,11 @@
     <string name="fragment_voter_info">Voter Info</string>
     <string name="fragment_elections">Upcoming Elections</string>
     <string name="fragment_representative">Find Representative</string>
+    <string name="saved_election">Saved Elections</string>
 
+    <!-- Tools items-->
+    <string name="title_item_tools">Louisiana Municipal Election</string>
+    <string name="date_item_tools">2021-06-06</string>
 
 
 </resources>
