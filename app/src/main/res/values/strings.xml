@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Political Preparedness</string>
+
+    <!-- Fragment launch -->
     <string name="up_elections">Upcoming elections</string>
     <string name="find_my_representation">Find my representatives</string>
     <string name="desc_img_elections">Image about the elections</string>
 
-    <!-- TODO: Add necessary string values -->
+    <!-- Titles Fragment -->
+    <string name="fragment_voter_info">Voter Info</string>
+    <string name="fragment_elections">Upcoming Elections</string>
+    <string name="fragment_representative">Find Representative</string>
+
+
 
 </resources>

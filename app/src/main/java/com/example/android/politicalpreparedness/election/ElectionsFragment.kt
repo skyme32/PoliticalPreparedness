@@ -25,7 +25,7 @@ class ElectionsFragment: Fragment() {
 
         //TODO: Populate recycler adapters
 
-        return inflater.inflate(R.layout.fragment_launch, container, false)
+        return inflater.inflate(R.layout.fragment_election, container, false)
     }
 
     //TODO: Refresh adapters when fragment loads
