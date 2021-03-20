@@ -8,10 +8,14 @@ import java.util.*
 
 @BindingAdapter("textDate")
 fun dateFormat(textView: TextView, value: Date?) {
-    val localizedDate = DateUtils.formatDateTime(
-            textView.context,
-            value?.time!!,
-            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_SHOW_YEAR
-    )
+    var localizedDate = ""
+    if(value != null) {
+        localizedDate = DateUtils.formatDateTime(
+                textView.context,
+                value.time,
+                DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_SHOW_YEAR
+        )
+    }
+
     textView.text = localizedDate
 }
