@@ -1,12 +1,13 @@
 package com.example.android.politicalpreparedness.network
 
+import android.util.Log
 import okhttp3.OkHttpClient
 
 class CivicsHttpClient: OkHttpClient() {
 
     companion object {
 
-        private const val API_KEY = ""
+        private const val API_KEY = "AIzaSyAYhpVnVRbGqAC0gRGIRjdZL0GSYb9tkEs"
 
         fun getClient(): OkHttpClient {
             return Builder()
@@ -17,6 +18,7 @@ class CivicsHttpClient: OkHttpClient() {
                                 .newBuilder()
                                 .addQueryParameter("key", API_KEY)
                                 .build()
+                        Log.i("URL_OKHTTP", url.toString())
                         val request = original
                                 .newBuilder()
                                 .url(url)

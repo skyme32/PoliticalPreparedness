@@ -20,24 +20,23 @@
             android:layout_marginTop="@dimen/default_padding"
             android:layout_marginBottom="4dp"
             android:text="@{election.name}"
-            tools:text="@string/title_item_tools"
-            android:textSize="@dimen/default_title_item"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/title_item_tools" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_padding"
-            android:text="@{election.electionDay.toString()}"
-            tools:text="@string/date_item_tools"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:textDate="@{election.electionDay}"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="@string/date_item_tools" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.example.android.politicalpreparedness.election
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,8 +38,9 @@ class ElectionsFragment: Fragment() {
         // Link elections to voter info
         viewModel.navigateToDetailElection.observe(viewLifecycleOwner, Observer { election ->
             if (election != null) {
-                findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election.id, election.division))
+                findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election))
                 viewModel.onElectionNavigated()
+                Log.d(TAG, "ID: ${election.id}, NAME: ${election.name}, DIVISION: ${election.division}")
             }
         })
 
@@ -60,6 +62,6 @@ class ElectionsFragment: Fragment() {
 
         return binding.root
     }
-
-
 }
+
+private const val TAG = "ListFragmentElection"
