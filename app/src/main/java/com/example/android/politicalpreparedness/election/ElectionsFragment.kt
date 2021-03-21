@@ -44,20 +44,32 @@ class ElectionsFragment: Fragment() {
             }
         })
 
-        // Initiate recycler adapters
+        // Initiate recycler adapters Election
         val electionAdapter = ElectionListAdapter(ElectionListener { election ->
             viewModel.onElectionClicked(election)
         })
         electionAdapter.setHasStableIds(true)
-
-        // Populate recycler adapters
-        //binding.asteroidRecycler.adapter = asteroidAdapter
         binding.electionRecycler.adapter = electionAdapter
+
+
+        // Initiate recycler adapters Followed
+        val followedAdapter = ElectionListAdapter(ElectionListener { election ->
+            viewModel.onElectionClicked(election)
+        })
+        followedAdapter.setHasStableIds(true)
+        binding.saveRecycler.adapter = followedAdapter
+
 
         // Refresh adapters when fragment loads
         viewModel.electionUpcoming.observe(viewLifecycleOwner, Observer<List<Election>> { electionList ->
             electionList.apply {
                 electionAdapter.submitList(electionList)
+            }
+        })
+
+        viewModel.electionFolllowed.observe(viewLifecycleOwner, Observer<List<Election>> { electionList ->
+            electionList.apply {
+                followedAdapter.submitList(electionList)
             }
         })
 
