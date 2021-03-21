@@ -24,6 +24,7 @@
     <string name="corresponde_address">Correspondence Address</string>
     <string name="address_line">Address Line</string>
     <string name="not_data">Not Data</string>
+    <string name="not_follow">Empty Followed</string>
 
 
 </resources>

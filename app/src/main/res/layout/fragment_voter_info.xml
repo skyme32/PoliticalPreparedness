@@ -152,10 +152,10 @@
             android:text="@string/not_data"
             android:textAllCaps="true"
             android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/election_date"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/election_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

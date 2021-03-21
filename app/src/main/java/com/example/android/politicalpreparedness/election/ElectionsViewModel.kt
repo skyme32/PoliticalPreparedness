@@ -41,4 +41,6 @@ class ElectionsViewModel(application: Application): AndroidViewModel(application
         _navigateToDetailElection.value = null
     }
 
+    // States of list
+
 }

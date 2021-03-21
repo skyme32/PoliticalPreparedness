@@ -64,12 +64,22 @@ class ElectionsFragment: Fragment() {
         viewModel.electionUpcoming.observe(viewLifecycleOwner, Observer<List<Election>> { electionList ->
             electionList.apply {
                 electionAdapter.submitList(electionList)
+                if (electionList.isEmpty()) {
+                    binding.notDataUp.visibility = View.VISIBLE
+                } else {
+                    binding.notDataUp.visibility = View.GONE
+                }
             }
         })
 
         viewModel.electionFolllowed.observe(viewLifecycleOwner, Observer<List<Election>> { electionList ->
             electionList.apply {
                 followedAdapter.submitList(electionList)
+                if (electionList.isEmpty()) {
+                    binding.emptyData.visibility = View.VISIBLE
+                } else {
+                    binding.emptyData.visibility = View.GONE
+                }
             }
         })
 
