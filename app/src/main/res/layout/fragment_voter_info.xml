@@ -135,6 +135,7 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginBottom="@dimen/medium_padding"
             android:text="@string/follow"
+            android:onClick="@{() -> viewModelVoter.onFollowedClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

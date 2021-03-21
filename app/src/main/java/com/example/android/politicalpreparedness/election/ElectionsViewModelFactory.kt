@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 
 // Create Factory to generate ElectionViewModel with provided election datasource
 class ElectionsViewModelFactory(val app: Application): ViewModelProvider.Factory {
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ElectionsViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

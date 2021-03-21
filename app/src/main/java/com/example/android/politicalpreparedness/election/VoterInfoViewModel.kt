@@ -1,8 +1,9 @@
 package com.example.android.politicalpreparedness.election
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.android.politicalpreparedness.R
+import com.example.android.politicalpreparedness.database.ElectionRepository
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.network.models.Election
@@ -13,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class VoterInfoViewModel(private val database: Application,
+class VoterInfoViewModel(private val repository: ElectionRepository,
                          private val election: Election)
     : ViewModel() {
 
@@ -34,6 +35,7 @@ class VoterInfoViewModel(private val database: Application,
     init {
         viewModelScope.launch {
             serviceVoterInfo()
+            _stateFollowed.value = repository.isFollowed(election)
         }
     }
 
@@ -67,6 +69,22 @@ class VoterInfoViewModel(private val database: Application,
 
     //TODO: Add var and methods to save and remove elections to local database
     //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
+    private val _stateFollowed = MutableLiveData<Boolean>(false)
+    val stateFollowed: LiveData<Boolean>
+        get() = _stateFollowed
+
+
+    fun onFollowedClick() {
+        viewModelScope.launch {
+            if (_stateFollowed.value!!) {
+                repository.delFollowed(election)
+            } else {
+                repository.addFollowed(election)
+            }
+            _stateFollowed.value = repository.isFollowed(election)
+        }
+    }
+
 
     /**
      * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
@@ -74,3 +92,4 @@ class VoterInfoViewModel(private val database: Application,
 }
 private const val TAG = "serviceVoterInfo"
 enum class CONECTION {CONNECTED, DISCONNECTED}
+enum class ISFOLLOWED {FOLLOWED, UNFOLLOWED}

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentVoterInfoBinding
 import com.example.android.politicalpreparedness.utils.setTitle
 
@@ -67,9 +68,14 @@ class VoterInfoFragment : Fragment() {
             loadURLIntents(it)
         })
 
-        //TODO: Handle save button UI state
-        //TODO: cont'd Handle save button clicks
-
+        // Handle save button UI state, cont'd Handle save button clicks
+        viewModel.stateFollowed.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.buttonFollow.text = getString(R.string.unfollow)
+            } else {
+                binding.buttonFollow.text = getString(R.string.follow)
+            }
+        })
 
         setTitle(infoElection.name)
         return binding.root
