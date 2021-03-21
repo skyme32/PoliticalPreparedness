@@ -6,12 +6,20 @@
     <!-- Add data binding node for Voter Info ViewModel -->
     <data>
         <variable
+            name="utils"
+            type="com.example.android.politicalpreparedness.utils.ExtensionsKt" />
+
+        <variable
             name="election"
             type="com.example.android.politicalpreparedness.network.models.Election" />
 
         <variable
             name="voterInfo"
             type="com.example.android.politicalpreparedness.network.models.VoterInfoResponse" />
+
+        <variable
+            name="viewModelVoter"
+            type="com.example.android.politicalpreparedness.election.VoterInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,60 +35,126 @@
             android:layout_margin="@dimen/default_padding"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:textDate="@{election.electionDay}"
             tools:text="12 November 2055" />
 
         <!-- TODO: Add visual styling and content -->
-        <TextView
-            android:id="@+id/state_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/election_date"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
+
+        <TextView
+            android:id="@+id/state_header"
+            style="@style/subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/election_info"
+            app:layout_constraintEnd_toEndOf="@+id/election_date"
+            app:layout_constraintStart_toStartOf="@+id/election_date"
+            app:layout_constraintTop_toBottomOf="@id/election_date"
+            tools:text="@string/election_info" />
+
         <TextView
             android:id="@+id/state_locations"
-            android:layout_width="wrap_content"
+            style="@style/default_lynk"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/state_header"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
+            android:layout_marginStart="@dimen/min_padding"
+            android:layout_marginTop="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/min_padding"
+            android:drawableStart="@drawable/ic_language"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:text="@string/voting_loc"
+            android:textColorLink="@color/colorAccent"
+            android:setFadeVisibleString="@{voterInfo.state[0].electionAdministrationBody.electionInfoUrl}"
+            android:onClick="@{() -> viewModelVoter.loadingURLs(voterInfo.state[0].electionAdministrationBody.electionInfoUrl)}"
+            app:layout_constraintEnd_toEndOf="@+id/state_header"
+            app:layout_constraintStart_toStartOf="@+id/state_header"
+            app:layout_constraintTop_toBottomOf="@id/state_header" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_ballot"
-            android:layout_width="wrap_content"
+            style="@style/default_lynk"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:drawableStart="@drawable/ic_language"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:text="@string/ballot_info"
+            android:setFadeVisibleString="@{voterInfo.state[0].electionAdministrationBody.ballotInfoUrl}"
+            android:onClick="@{() -> viewModelVoter.loadingURLs(voterInfo.state[0].electionAdministrationBody.ballotInfoUrl)}"
+            app:layout_constraintEnd_toEndOf="@+id/state_locations"
+            app:layout_constraintStart_toStartOf="@+id/state_locations"
             app:layout_constraintTop_toBottomOf="@id/state_locations"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/address_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="state_correspondence_header,address" />
+            tools:text="@string/ballot_info" />
 
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_correspondence_header"
-            android:layout_width="wrap_content"
+            style="@style/subtitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:text="@string/corresponde_address"
+            app:layout_constraintEnd_toEndOf="@+id/state_header"
+            app:layout_constraintStart_toStartOf="@+id/state_header"
             app:layout_constraintTop_toBottomOf="@id/state_ballot"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
+            tools:text="@string/corresponde_address" />
 
         <!-- TODO: Add data binding -->
         <TextView
             android:id="@+id/address"
-            android:layout_width="wrap_content"
+            style="@style/default_lynk"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/state_correspondence_header"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
+            android:layout_marginTop="@dimen/default_padding"
+            android:drawableStart="@drawable/ic_location_on"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:setStrAddress="@{voterInfo.state[0].electionAdministrationBody.correspondenceAddress}"
+            android:onClick="@{() -> viewModelVoter.loadingURLs(viewModelVoter.uriFormatAddress(voterInfo.state[0].electionAdministrationBody.correspondenceAddress))}"
+            android:text="@string/address_line"
+            app:layout_constraintEnd_toEndOf="@+id/state_ballot"
+            app:layout_constraintStart_toStartOf="@+id/state_ballot"
+            app:layout_constraintTop_toBottomOf="@id/state_correspondence_header" />
 
         <!-- TODO: Add button to save election to Room -->
+        <Button
+            android:id="@+id/button_follow"
+            style="@style/buttonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:text="@string/follow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/not_data"
+            style="@style/style_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:drawableTop="@drawable/ic_connection_error"
+            android:fadeVisible="@{viewModelVoter.showNoData.booleanValue()}"
+            android:gravity="center"
+            android:text="@string/not_data"
+            android:textAllCaps="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/election_date"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

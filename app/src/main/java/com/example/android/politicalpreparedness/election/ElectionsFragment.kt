@@ -48,6 +48,7 @@ class ElectionsFragment: Fragment() {
         val electionAdapter = ElectionListAdapter(ElectionListener { election ->
             viewModel.onElectionClicked(election)
         })
+        electionAdapter.setHasStableIds(true)
 
         // Populate recycler adapters
         //binding.asteroidRecycler.adapter = asteroidAdapter

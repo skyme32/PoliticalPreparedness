@@ -26,7 +26,6 @@ class ElectionListAdapter(private val clickListener: ElectionListener):
             it.bind(election)
         }
     }
-
 }
 
 // Create ElectionViewHolder

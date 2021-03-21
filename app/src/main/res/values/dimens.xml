@@ -3,9 +3,13 @@
     <dimen name="default_padding">8dp</dimen>
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="max_padding">32dp</dimen>
+    <dimen name="min_padding">4dp</dimen>
 
-    <!-- TODO: Add necessary dimension values -->
+    <!-- Add necessary dimension values -->
     <dimen name="default_title">28sp</dimen>
+    <dimen name="default_subitle">22sp</dimen>
     <dimen name="default_title_item">18sp</dimen>
+    <dimen name="default_lynk">16sp</dimen>
+
 
 </resources>

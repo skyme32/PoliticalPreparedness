@@ -16,6 +16,13 @@
     <!-- Tools items-->
     <string name="title_item_tools">Louisiana Municipal Election</string>
     <string name="date_item_tools">2021-06-06</string>
+    <string name="election_info">Election Information</string>
+    <string name="voting_loc">Voting Locations</string>
+    <string name="ballot_info">Ballot Information</string>
+    <string name="follow">Follow Election</string>
+    <string name="corresponde_address">Correspondence Address</string>
+    <string name="address_line">Address Line</string>
+    <string name="not_data">Not Data</string>
 
 
 </resources>
