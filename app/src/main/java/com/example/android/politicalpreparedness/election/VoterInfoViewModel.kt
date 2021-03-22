@@ -2,7 +2,6 @@ package com.example.android.politicalpreparedness.election
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.database.ElectionRepository
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Address
@@ -67,8 +66,8 @@ class VoterInfoViewModel(private val repository: ElectionRepository,
     }
 
 
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
+    // Add var and methods to save and remove elections to local database
+    // cont'd -- Populate initial state of save button to reflect proper action based on election saved status
     private val _stateFollowed = MutableLiveData<Boolean>(false)
     val stateFollowed: LiveData<Boolean>
         get() = _stateFollowed

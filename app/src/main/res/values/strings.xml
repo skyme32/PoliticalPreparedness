@@ -25,6 +25,9 @@
     <string name="address_line">Address Line</string>
     <string name="not_data">Not Data</string>
     <string name="not_follow">Empty Followed</string>
+    <string name="str_repensative_tools">President of the United States</string>
+    <string name="str_name_tools">Joseph Biden</string>
+    <string name="str_office_tools">Democratic Party</string>
 
 
 </resources>

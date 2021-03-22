@@ -32,4 +32,9 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="item_title">
+        <item name="android:textSize">@dimen/default_lynk</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

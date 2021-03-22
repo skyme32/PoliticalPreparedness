@@ -11,5 +11,9 @@
     <dimen name="default_title_item">18sp</dimen>
     <dimen name="default_lynk">16sp</dimen>
 
+    <!-- Dimensions of image -->
+    <dimen name="representative_size">70dp</dimen>
+    <dimen name="social_size">35dp</dimen>
+
 
 </resources>

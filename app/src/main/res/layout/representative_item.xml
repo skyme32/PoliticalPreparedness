@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="representative"
+            type="com.example.android.politicalpreparedness.representative.model.Representative" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/representativePhoto"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_padding"
+            android:layout_marginBottom="@dimen/default_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/tvt_representative"
+            style="@style/item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:text="@string/str_repensative_tools"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/representativePhoto"
+            app:layout_constraintTop_toTopOf="@+id/representativePhoto" />
+
+        <TextView
+            android:id="@+id/tvt_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/min_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:text="@string/str_name_tools"
+            app:layout_constraintEnd_toStartOf="@+id/img_twitter"
+            app:layout_constraintStart_toStartOf="@+id/tvt_representative"
+            app:layout_constraintTop_toBottomOf="@+id/tvt_representative" />
+
+        <TextView
+            android:id="@+id/tvt_office"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/min_padding"
+            android:text="@string/str_office_tools"
+            app:layout_constraintBottom_toBottomOf="@+id/representativePhoto"
+            app:layout_constraintEnd_toEndOf="@+id/tvt_name"
+            app:layout_constraintStart_toStartOf="@+id/tvt_name"
+            app:layout_constraintTop_toBottomOf="@+id/tvt_name" />
+
+        <ImageView
+            android:id="@+id/img_web"
+            android:layout_width="@dimen/social_size"
+            android:layout_height="@dimen/social_size"
+            app:layout_constraintBottom_toBottomOf="@+id/representativePhoto"
+            app:layout_constraintEnd_toEndOf="@+id/tvt_representative"
+            app:srcCompat="@drawable/ic_twitter" />
+
+        <ImageView
+            android:id="@+id/img_facebook"
+            android:layout_width="@dimen/social_size"
+            android:layout_height="@dimen/social_size"
+            android:layout_marginEnd="@dimen/default_padding"
+            app:layout_constraintBottom_toBottomOf="@+id/img_web"
+            app:layout_constraintEnd_toStartOf="@+id/img_web"
+            app:layout_constraintTop_toTopOf="@+id/img_web"
+            app:srcCompat="@drawable/ic_facebook" />
+
+        <ImageView
+            android:id="@+id/img_twitter"
+            android:layout_width="@dimen/social_size"
+            android:layout_height="@dimen/social_size"
+            android:layout_marginEnd="@dimen/default_padding"
+            app:layout_constraintBottom_toBottomOf="@+id/representativePhoto"
+            app:layout_constraintEnd_toStartOf="@+id/img_facebook"
+            app:layout_constraintTop_toTopOf="@+id/img_facebook"
+            app:srcCompat="@drawable/ic_www" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
