@@ -45,8 +45,6 @@ class VoterInfoFragment : Fragment() {
         */
         binding.election = infoElection
         viewModel.state.observe(viewLifecycleOwner, Observer {
-            Log.i("HOHO_TEST", it.name)
-
             when(it) {
                 CONECTION.CONNECTED -> {
                     viewModel.voterInfo.observe(viewLifecycleOwner, Observer { voterInfo ->

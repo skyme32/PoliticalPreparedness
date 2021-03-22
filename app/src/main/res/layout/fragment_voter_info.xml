@@ -6,10 +6,6 @@
     <!-- Add data binding node for Voter Info ViewModel -->
     <data>
         <variable
-            name="utils"
-            type="com.example.android.politicalpreparedness.utils.ExtensionsKt" />
-
-        <variable
             name="election"
             type="com.example.android.politicalpreparedness.network.models.Election" />
 

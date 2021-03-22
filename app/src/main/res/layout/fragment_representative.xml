@@ -3,12 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:motion="http://schemas.android.com/tools">
 
-    <!-- TODO: Add data binding node -->
+    <!-- Add data binding node -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
+    </data>
+
 
     <!-- TODO: Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_representative_scene">
 
         <!-- Add visual styling and content -->
@@ -32,6 +38,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:hint="@string/txt_address_line1"
+            android:text="@{viewModel.address.line1}"
             android:inputType="textPostalAddress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
@@ -138,6 +145,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/representative_title"
+            android:list_live_data="@{viewModel.representatives}"
             motion:listitem="@layout/representative_item" />
 
 
@@ -149,10 +157,9 @@
             android:gravity="center"
             android:textAlignment="center"
             android:visibility="gone"
-            motion:visibilityMode="ignore"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/representative_title"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            motion:visibilityMode="ignore" />
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>

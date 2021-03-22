@@ -34,6 +34,7 @@
     <!-- ERRORS -->
     <string name="not_data">Not Data</string>
     <string name="not_follow">Empty Followed</string>
+    <string name="not_find_representative">Not find the representative</string>
 
     <!-- Tools items-->
     <string name="title_item_tools">Louisiana Municipal Election</string>
