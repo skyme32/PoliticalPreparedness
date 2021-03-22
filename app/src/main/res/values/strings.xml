@@ -13,18 +13,31 @@
     <string name="fragment_representative">Find Representative</string>
     <string name="saved_election">Saved Elections</string>
 
-    <!-- Tools items-->
-    <string name="title_item_tools">Louisiana Municipal Election</string>
-    <string name="date_item_tools">2021-06-06</string>
-    <string name="election_info">Election Information</string>
+    <!-- VOTERINFO FRAGMAENT -->
     <string name="voting_loc">Voting Locations</string>
     <string name="ballot_info">Ballot Information</string>
     <string name="follow">Follow Election</string>
     <string name="unfollow">Unfollow Election</string>
+    <string name="election_info">Election Information</string>
     <string name="corresponde_address">Correspondence Address</string>
     <string name="address_line">Address Line</string>
+
+    <!-- REPRESENTATIVE FRAGMAENT -->
+    <string name="title_representative_search">Representative Search</string>
+    <string name="my_representative">My Representative</string>
+    <string name="txt_btn_location">Use My Location</string>
+    <string name="txt_address_line1">Address Line 1</string>
+    <string name="txt_address_line2">Address Line 2</string>
+    <string name="txt_city">City</string>
+    <string name="txt_zip">Zip</string>
+
+    <!-- ERRORS -->
     <string name="not_data">Not Data</string>
     <string name="not_follow">Empty Followed</string>
+
+    <!-- Tools items-->
+    <string name="title_item_tools">Louisiana Municipal Election</string>
+    <string name="date_item_tools">2021-06-06</string>
     <string name="str_repensative_tools">President of the United States</string>
     <string name="str_name_tools">Joseph Biden</string>
     <string name="str_office_tools">Democratic Party</string>
