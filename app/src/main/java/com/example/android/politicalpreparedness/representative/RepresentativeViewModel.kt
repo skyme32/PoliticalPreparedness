@@ -40,7 +40,7 @@ class RepresentativeViewModel : ViewModel() {
      */
     // Create function to fetch representatives from API from a provided address
     fun getRepresentatives() {
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
                     val (offices, officials) = CivicsApi.retrofitService.getRepresentatives(_address.value!!.toFormattedString())

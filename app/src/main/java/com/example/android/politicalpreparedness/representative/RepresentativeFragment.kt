@@ -54,7 +54,6 @@ class DetailFragment : Fragment() {
         // Define and assign Representative adapter
         // Populate Representative adapter -> in XML with DataBinding
         val representativeAdapter = RepresentativeListAdapter()
-        representativeAdapter.setHasStableIds(true)
         binding.recyclerRepresentative.adapter = representativeAdapter
 
 
