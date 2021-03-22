@@ -40,7 +40,7 @@ class RepresentativeViewModel : ViewModel() {
      */
     // Create function to fetch representatives from API from a provided address
     fun getRepresentatives() {
-        viewModelScope.launch{
+        viewModelScope.launch(Dispatchers.Main) {
             try {
                 withContext(Dispatchers.IO) {
                     val (offices, officials) = CivicsApi.retrofitService.getRepresentatives(_address.value!!.toFormattedString())
@@ -59,10 +59,10 @@ class RepresentativeViewModel : ViewModel() {
     // Create function get address from geo location
     // Create function to get address from individual fields
     fun getAddress(address: Address) {
-        _address.postValue(address)
+        _address.value = address
     }
 
 
 }
+
 private const val TAG = "serviceGetRepresentatives"
-enum class CONECTION {CONNECTED, DISCONNECTED}

@@ -11,7 +11,7 @@
     </data>
 
 
-    <!-- TODO: Add motion scene to hide form on vertical scroll. -->
+    <!-- Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- TODO: Add data binding value -->
+        <!-- Add data binding value -->
         <!-- Add visual styling and content -->
         <EditText
             android:id="@+id/address_line_1"
@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
-        <!-- TODO: Add data binding value -->
+        <!-- Add data binding value -->
         <!-- Add visual styling and content -->
         <EditText
             android:id="@+id/address_line_2"
@@ -53,10 +53,11 @@
             android:autofillHints=""
             android:hint="@string/txt_address_line2"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.address.line2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
-        <!-- TODO: Add data binding value -->
+        <!-- Add data binding value -->
         <!-- Add visual styling and content -->
         <EditText
             android:id="@+id/city"
@@ -66,12 +67,13 @@
             android:autofillHints=""
             android:hint="@string/txt_city"
             android:inputType="textPostalAddress"
+            android:text="@{viewModel.address.city}"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
 
-        <!-- TODO: Add default values from provided resources  -->
-        <!-- TODO: Add data binding value -->
+        <!-- Add default values from provided resources  -->
+        <!-- Add data binding value -->
         <!-- Add visual styling and content -->
         <Spinner
             android:id="@+id/state"
@@ -81,12 +83,13 @@
             android:autofillHints=""
             android:entries="@array/states"
             android:inputType="textPostalAddress"
+            app:stateValue="@{viewModel.address.state}"
             app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
             app:layout_constraintTop_toTopOf="@id/city" />
 
-        <!-- TODO: Add data binding value -->
+        <!-- Add data binding value -->
         <!-- Add visual styling and content -->
         <EditText
             android:id="@+id/zip"
@@ -97,6 +100,7 @@
             android:hint="@string/txt_zip"
             android:inputType="number"
             android:maxLength="5"
+            android:text="@{viewModel.address.zip}"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
@@ -149,7 +153,7 @@
             motion:listitem="@layout/representative_item" />
 
 
-        <!-- TODO: Add visual styling and content -->
+        <!-- Add visual styling and content -->
         <TextView
             android:id="@+id/list_placeholder"
             android:layout_width="match_parent"

@@ -1,14 +1,21 @@
 package com.example.android.politicalpreparedness.representative
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
@@ -16,21 +23,26 @@ import com.example.android.politicalpreparedness.election.CONECTION
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import com.example.android.politicalpreparedness.utils.showSnackbar
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import java.util.*
 
 class DetailFragment : Fragment() {
 
     companion object {
-        //TODO: Add Constant for Location request
+        // Add Constant for Location request
+        private const val REQUEST_LOCATION_PERMISSION = 1001
+        private const val TAG = "ErrorRepresentativeFrag"
     }
 
     // Declare ViewModel
     private lateinit var viewModel: RepresentativeViewModel
     private lateinit var binding: FragmentRepresentativeBinding
 
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         // Establish bindings
         viewModel = ViewModelProvider(this).get(RepresentativeViewModel::class.java)
@@ -42,24 +54,24 @@ class DetailFragment : Fragment() {
         // Define and assign Representative adapter
         // Populate Representative adapter -> in XML with DataBinding
         val representativeAdapter = RepresentativeListAdapter()
-        //representativeAdapter.setHasStableIds(true)
+        representativeAdapter.setHasStableIds(true)
         binding.recyclerRepresentative.adapter = representativeAdapter
 
 
-        //
-        viewModel.status.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        // Show a message if the estate not CONNECTED
+        viewModel.status.observe(viewLifecycleOwner, Observer {
             if (it == CONECTION.DISCONNECTED) {
                 showSnackbar(R.string.not_find_representative)
             }
         })
 
 
-        //TODO: Establish button listeners for field and location search
+        // Establish button listeners for field and location search
         binding.buttonSearch.setOnClickListener {
             // Hide the keyboard
             hideKeyboard()
 
-            // Take the data of EditText and convert to addres
+            // Take the data of EditText and convert to address
             viewModel.getAddress(getTextDataBinding())
 
             // search the representatives with the address
@@ -77,30 +89,59 @@ class DetailFragment : Fragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //TODO: Handle location permission result to get location on permission granted
+        // Handle location permission result to get location on permission granted
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getLocation()
+            }
+        }
     }
 
     private fun checkLocationPermissions(): Boolean {
         return if (isPermissionGranted()) {
+            getLocation()
             true
         } else {
-            //TODO: Request Location permissions
+            // Request Location permissions
+            ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    REQUEST_LOCATION_PERMISSION
+            )
             false
         }
     }
 
     private fun isPermissionGranted(): Boolean {
-        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
-        return false
+        return ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
+    @SuppressLint("MissingPermission")
     private fun getLocation() {
-        //TODO: Get location from LocationServices
-        //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
-    }
 
-    private fun setTextDataBinding() {
+        try {
+            // Get location from LocationServices
+            val mLocationRequest: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            mLocationRequest.lastLocation
+                    .addOnSuccessListener { location ->
+                        if (location != null) {
+                            val address = geoCodeLocation(location)
+                            viewModel.getAddress(address)
+                            viewModel.getRepresentatives()
+                        } else {
+                            showSnackbar(R.string.location_required_error)
+                            Log.d(TAG, "Current location is null. Using defaults.")
+                        }
+                    }
+                    .addOnFailureListener { err -> err.printStackTrace() }
 
+
+        } catch (e: SecurityException) {
+            Log.e(TAG, e.message!!)
+        }
     }
 
     private fun getTextDataBinding(): Address {

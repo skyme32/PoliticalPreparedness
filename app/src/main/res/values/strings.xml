@@ -35,6 +35,7 @@
     <string name="not_data">Not Data</string>
     <string name="not_follow">Empty Followed</string>
     <string name="not_find_representative">Not find the representative</string>
+    <string name="location_required_error">Location services must be enabled to use the app</string>
 
     <!-- Tools items-->
     <string name="title_item_tools">Louisiana Municipal Election</string>
