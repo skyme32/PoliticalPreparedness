@@ -82,6 +82,8 @@ class DetailFragment : Fragment() {
             checkLocationPermissions()
         }
 
+        // Initialize the location
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         return binding.root
     }
@@ -127,7 +129,6 @@ class DetailFragment : Fragment() {
             mLocRequest.smallestDisplacement = 5F
             mLocRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY;
 
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
             fusedLocationClient.requestLocationUpdates(mLocRequest,
                     locationCallback,
                     null)
