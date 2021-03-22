@@ -23,8 +23,7 @@ import com.example.android.politicalpreparedness.election.CONECTION
 import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import com.example.android.politicalpreparedness.utils.showSnackbar
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import java.util.*
 
 class DetailFragment : Fragment() {
@@ -38,6 +37,7 @@ class DetailFragment : Fragment() {
     // Declare ViewModel
     private lateinit var viewModel: RepresentativeViewModel
     private lateinit var binding: FragmentRepresentativeBinding
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -122,24 +122,34 @@ class DetailFragment : Fragment() {
     private fun getLocation() {
 
         try {
-            // Get location from LocationServices
-            val mLocationRequest: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-            mLocationRequest.lastLocation
-                    .addOnSuccessListener { location ->
-                        if (location != null) {
-                            val address = geoCodeLocation(location)
-                            viewModel.getAddress(address)
-                            viewModel.getRepresentatives()
-                        } else {
-                            showSnackbar(R.string.location_required_error)
-                            Log.d(TAG, "Current location is null. Using defaults.")
-                        }
-                    }
-                    .addOnFailureListener { err -> err.printStackTrace() }
+            val mLocRequest = LocationRequest.create();
+            mLocRequest.interval = 20000
+            mLocRequest.smallestDisplacement = 5F
+            mLocRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY;
 
-
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationClient.requestLocationUpdates(mLocRequest,
+                    locationCallback,
+                    null)
         } catch (e: SecurityException) {
             Log.e(TAG, e.message!!)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    private val locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult?) {
+            locationResult ?: return
+                for (location in locationResult.locations) {
+                    // Update UI with location data
+                    val address = geoCodeLocation(location)
+                    viewModel.getAddress(address)
+                    viewModel.getRepresentatives()
+                }
         }
     }
 
